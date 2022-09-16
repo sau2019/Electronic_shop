@@ -1,0 +1,15 @@
+.subcategory-name {
+    padding: 5px;
+    background-color: #e8e4ff;
+    border-radius: 5px;
+    margin: 1px;
+    text-align: left;
+}
+
+.category-name {
+    font-size: 14px;
+    color: dodgerblue;
+    font-weight: 600;
+    float: left;
+    margin-left: 20px;
+}

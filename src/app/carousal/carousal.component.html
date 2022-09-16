@@ -1,0 +1,8 @@
+<div class="container slider">
+    <carousel [objectFit]="'cover'" [cellWidth]="'100%'" [autoplay]="true" [dots]="true" [loop]="true" [height]="400">
+        <div class="carousel-cell" *ngFor="let carousal of carous">
+            <img class="carousal-img" src="{{carousal.payload.doc.data().imgPath}}">
+            <h2>{{carousal.payload.doc.data().category}}</h2>
+        </div>
+    </carousel>
+</div>

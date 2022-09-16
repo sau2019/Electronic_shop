@@ -1,0 +1,122 @@
+<div class="container" *ngFor="let d of item">
+    <input type="text" #initialImage value="{{d.payload.doc.data().imgPath}}" hidden/>
+    <div class="row detail-area">
+        <div class="col-md-6 card">
+            <img class="d-image" id="imageArea" src="{{productImage}}">
+            <span class="image-number">Total image: <b>{{d.payload.doc.data().slide.length}}</b></span>
+            <carousel [autoplay]="false" [loop]="true" [height]="90" class="d-selector">
+                <div class="carousel-cell d-selector-item" *ngFor="let slide of d.payload.doc.data().slide">
+                    <img class="d-selector-image" src="{{slide}}" (click)="changeImage(slide);">
+                </div>
+            </carousel>
+        </div>
+        <div class="col-md-6">
+            <div class="product-detail">
+                <div class="row">
+                    <h1 class="title">{{d.payload.doc.data().name}}</h1>
+                    <h2 class="mrp">Rs.{{d.payload.doc.data().mrp}}</h2>
+                    <h2 class="price">Rs.{{d.payload.doc.data().price}}</h2>
+                    <p class="savers">Save Rs.{{d.payload.doc.data().mrp-d.payload.doc.data().price}}</p>
+                </div>
+                <br/>
+                <div class="row">
+                    <div class="form-group">
+                        <label class="label">Available Variants</label>
+                        <div class="product-variant" *ngFor="let color of d.payload.doc.data().webcolor">
+
+                            <input type="radio" value="{{color}}" class="product-radio" [(ngModel)]="pVariant" name="color" />
+                            <input type="color" value="{{color}}" class="product-color" disabled/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <label class="label">Available Sizes</label>
+                        <div class="product-variant" *ngFor="let size of d.payload.doc.data().size">
+
+                            <input type="radio" value="{{size}}" class="product-radio" [(ngModel)]="pSize" name="size" /><span class="product-size">{{size}}</span>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <label class="label">Quantity</label>
+                        <div class="input-group">
+                            <div class=" input-group-addon">
+                                <button class="btn btn-default btn-sm circular5" (click)="qtyMinus();"><i class="fa fa-minus-square "></i></button>
+                            </div>
+                            <input type="text" [(ngModel)]="productQTY" class="qty-area" disabled/>
+                            <div class="input-group-addon">
+                                <button class="btn btn-default btn-sm circular5" (click)="qtyPlus();"><i class="fa fa-plus-square "></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <h3>Total Amount: <b>Rs.{{productQTY*d.payload.doc.data().price}}</b></h3>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="form-group" *ngIf="pSize==null || pVariant==null">
+
+                        <button class="btn btn-primary btn-md circular5" disabled><i class="fa fa-shopping-bag fa-2x"></i>&nbsp; Buy Now</button>
+                    </div>
+                    <div class="form-group" *ngIf="pSize!=null && pVariant!=null">
+
+                        <button class="btn btn-primary btn-md circular5" (click)="addToCart(d.payload.doc.data().category, pVariant, d.payload.doc.data().imgPath, d.payload.doc.data().name, d.payload.doc.data().price, productQTY, pSize,'trrweewesautsdve' );"><i class="fa fa-shopping-bag fa-2x"></i>&nbsp; Buy Now</button>
+                    </div>
+                </div>
+                <div class="row ">
+                    <div class="decription ">
+
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <h2>Product Description</h2>
+                                    </th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr>
+                                    <td>Brand :</td>
+                                    <td>{{d.payload.doc.data().brand}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Model :</td>
+                                    <td>{{d.payload.doc.data().model}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Price/QTY :</td>
+                                    <td>Rs.{{d.payload.doc.data().price}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Warranty :</td>
+                                    <td>{{d.payload.doc.data().warranty}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Description :</td>
+                                    <td>{{d.payload.doc.data().description}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Seller :</td>
+                                    <td>Mumtaz Radio Center</td>
+                                </tr>
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>

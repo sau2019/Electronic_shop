@@ -1,0 +1,62 @@
+<!-- Shopping Cart -->
+<div class="shopping-cart section" *ngIf="cartitem.length>0">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <!-- Shopping Summery -->
+                <table class="table shopping-summery">
+                    <thead>
+                        <tr class="main-hading">
+                            <th>PRODUCT</th>
+                            <th>NAME</th>
+                            <th class="text-center">UNIT PRICE</th>
+                            <th class="text-center">QUANTITY</th>
+                            <th class="text-center">TOTAL</th>
+                            <th class="text-center"><i class="ti-trash remove-icon"></i></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let cart of cartitem">
+                            <td class="image" data-title="No"><img src="{{cart.payload.doc.data().imgPath}}" alt="#"></td>
+                            <td class="product-des" data-title="Description">
+                                <p class="product-name"><a href="#">{{cart.payload.doc.data().name}}</a></p>
+                                <p class="product-des">{{cart.payload.doc.data().category}}</p>
+                            </td>
+                            <td class="price" data-title="Price"><span>Rs.{{cart.payload.doc.data().price}} </span></td>
+                            <td>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <button class="btn btn-sm btn-outline-info btn-round" (click)="minusQty( cart.payload.doc.id,cart.payload.doc.data().quantity, cart.payload.doc.data().price );"><i class="fa fa-minus"></i></button>
+                                    </div>
+                                    <input type="text" class="qty-area" value="{{ cart.payload.doc.data().quantity}}" disabled/>
+                                    <div class="input-group-addon">
+                                        <button class="btn btn-sm btn-outline-info btn-round" (click)="plusQty(cart.payload.doc.id,cart.payload.doc.data().quantity, cart.payload.doc.data().price);"><i class="fa fa-plus"></i></button>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="total-amount" data-title="Total"><span>Rs.{{cart.payload.doc.data().totalAmount}}</span></td>
+                            <td class="action" data-title="Remove"><button class="btn btn-outline-danger btn-sm btn-round" (click)="delete(cart.payload.doc.id)"> <i class="ti-trash remove-icon"></i></button></td>
+
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!--/ End Shopping Summery -->
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+
+            </div>
+            <div class="col-md-4 btn-area">
+
+                <a [routerLink]="['/productpage']" routerLinkActive="router-link-active" class="btn btn-outline-info btn-md">Continue shopping</a>
+                <a [routerLink]="['/checkout']" routerLinkActive="router-link-active" class="btn btn-outline-dark-green btn-md">Checkout</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container" *ngIf="cartitem.length==0">
+    <img src="assets/images/emptycart.gif" class="emptycart" />
+    <h2 class="empty-title">Hm, Cart Empty</h2>
+</div>

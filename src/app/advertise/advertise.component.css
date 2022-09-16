@@ -1,0 +1,11 @@
+.slider .title {
+    font-size: 14px;
+    padding: 10px;
+    justify-content: center;
+    border-left: 2px solid blue;
+}
+
+.slider .carousal-img {
+    height: 240px;
+    width: 350px;
+}

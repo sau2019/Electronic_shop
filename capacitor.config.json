@@ -1,0 +1,13 @@
+{
+  "appId": "com.mindstein.mumtazweb",
+  "appName": "electronic",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "dist/electronic",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  },
+  "cordova": {}
+}

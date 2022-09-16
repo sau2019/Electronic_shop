@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">electronic</string>
+    <string name="title_activity_main">electronic</string>
+    <string name="package_name">com.mindstein.mumtazweb</string>
+    <string name="custom_url_scheme">com.mindstein.mumtazweb</string>
+</resources>

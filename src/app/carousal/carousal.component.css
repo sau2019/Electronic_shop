@@ -1,0 +1,33 @@
+.carousal-img {
+    border-radius: 10px;
+    opacity: 0.8;
+    border: 1px solid #e1e0ff;
+}
+
+.carousal-img:hover {
+    opacity: 0.9;
+}
+
+.slider {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    display: flexbox;
+}
+
+.btn-custom {
+    float: right;
+}
+
+.carousal-title {
+    font-size: 14px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: Black;
+    font-weight: 600;
+    padding: 10px;
+    border-left: 5px solid dodgerblue;
+}
+
+.carousal-cell {
+    background-color: #dde5ff;
+}

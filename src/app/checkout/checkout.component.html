@@ -1,0 +1,109 @@
+<!-- Start Checkout -->
+<section class="shop checkout section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-12">
+                <h2>Checkout Item</h2>
+                <table *ngFor="let item of cartproduct">
+                    <tr class="item-area">
+                        <td class="item-grid">
+                            <P class="item-title"><b>{{item.payload.doc.data().name}}</b> </P>
+                        </td>
+
+                        <td class="item-grid">
+                            <p class="item-price">( {{ item.payload.doc.data().quantity}} x {{item.payload.doc.data().price}} )= ₹{{item.payload.doc.data().totalAmount}}</p>
+                        </td>
+                    </tr>
+                </table>
+
+                <button class="btn btn-sm btn-outline-info btn-round" [routerLink]="['/cart']" routerLinkActive="router-link-active"><i class="fa fa-edit"></i>&nbsp;Edit Cart</button>
+                <h3>Total Item : {{cartproduct.length}}</h3>
+                <div class="checkout-form">
+                    <h2>Complete Your Checkout</h2>
+                    <!-- Form -->
+                    <form class="form" method="post" action="#">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-12">
+                                <div class="form-group">
+                                    <label>Full Name<span>*</span></label>
+                                    <input type="text" name="cName" [(ngModel)]="cName" required="required">
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-12">
+                                <div class="form-group">
+                                    <label>Mobile Number<span>*</span></label>
+                                    <input type="text" name="cNumber" [(ngModel)]="cMobile" required="required">
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-12">
+                                <div class="form-group">
+                                    <label>Postal Code<span>*</span></label>
+                                    <input type="text" name="cPost" [(ngModel)]="cPincode" required="required">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-12">
+                                <div class="form-group">
+                                    <label>Delivery Address<span>*</span></label>
+                                    <input type="text" name="cAddress" [(ngModel)]="cAddress" required="required">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <!--/ End Form -->
+                </div>
+            </div>
+            <div class="col-lg-4 col-12">
+                <div class="order-details">
+                    <!-- Order Widget -->
+                    <div class="single-widget">
+                        <h2>CART TOTALS</h2>
+                        <div class="content">
+                            <ul>
+                                <li>Sub Total<span>₹45000</span></li>
+                                <li>(+) Shipping<span>₹0</span></li>
+                                <li class="last">Total<span>₹45000</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!--/ End Order Widget -->
+                    <!-- Order Widget -->
+                    <div class="single-widget">
+                        <h2>Payments</h2>
+                        <div class="radio-area">
+                            <div class="form-group">
+                                <input type="radio" name="payment" [(ngModel)]="payment" value="cod"> Cash On Delivery (COD)
+                            </div>
+                            <div class="form-group">
+                                <input type="radio" name="payment" [(ngModel)]="payment" value="razorpay"> Razorpay
+                            </div>
+                            <div class="form-group">
+                                <input type="radio" name="payment" [(ngModel)]="payment" value="emi"> 0% EMI
+                            </div>
+                        </div>
+
+                    </div>
+                    <!--/ End Order Widget -->
+                    <!-- Payment Method Widget -->
+                    <div class="single-widget payement">
+                        <div class="content">
+                            <img src="assets/images/payoption.jpg"><img src="assets/images/payoption2.jpg">
+                        </div>
+                    </div>
+                    <!--/ End Payment Method Widget -->
+
+                    <span class="error" id="errorform">{{formerror}}</span>
+                    <!-- Button Widget -->
+                    <div class="single-widget get-button">
+                        <div class="content">
+                            <input type="button" class="btn btn-dark btn-lg" (click)="placeOrder();" value="Place Order" />
+                        </div>
+                    </div>
+                    <!--/ End Button Widget -->
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>

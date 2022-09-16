@@ -1,0 +1,65 @@
+<div class="grid-container">
+    <div class="grid-item card" *ngFor="let product of productlist">
+        <p class="category">{{product.payload.doc.data().category}}</p>
+        <p class="off ">{{product.payload.doc.data().mrp-product.payload.doc.data().price}} OFF</p>
+        <div class="rating ">
+            <span class="fa fa-star checked "></span>
+            <span class="fa fa-star checked "></span>
+            <span class="fa fa-star checked "></span>
+            <span class="fa fa-star checked "></span>
+            <span class="fa fa-star "></span>
+        </div>
+
+        <img src="{{product.payload.doc.data().imgPath}} " [routerLink]="['/detail',product.payload.doc.id]" routerLinkActive="router-link-active">
+
+        <div class="details ">
+            <div clas="name-area ">
+                <p class="name ">{{product.payload.doc.data().name}}</p>
+            </div>
+            <p class="mrp ">₹{{product.payload.doc.data().mrp}}</p>
+            <br/>
+            <P class="price ">₹{{product.payload.doc.data().price}}</P>
+            <button class="btn btn-outline-info btn-sm round5 btn-cart" type="button" data-toggle="modal" data-target=".bd-example-modal-sm" (click)="openModal(product.payload.doc.id, product.payload.doc.data().price,product.payload.doc.data().size, product.payload.doc.data().webcolor, product.payload.doc.data().name, product.payload.doc.data().category, product.payload.doc.data().imgPath);"><i class="fa fa-cart-plus fa-2x "></i></button>
+            <a class="btn btn-blue btn-sm round5 btn-buy " [routerLink]="[ '/detail', product.payload.doc.data().productId] " routerLinkActive="router-link-active "><i class="fa fa-yelp fa-1x "></i>&nbsp;View</a>
+        </div>
+    </div>
+
+
+
+    <!-- MOdal ADD to Cart popup -->
+    <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <button class="btn btn-dark btn-dismiss" data-dismiss="modal"> X </button>
+                <h2 class="modal-title">Add to Cart</h2>
+                <p class="modal-pname">{{pName}}</p>
+                <span class="modal-subtitle">Color Variants</span>
+                <div class="input-group">
+                    <div class="product-variant" *ngFor="let color of productColor">
+                        <input type="radio" value="{{color}}" class="product-radio" [(ngModel)]="pVariant" name="color" />
+                        <input type="color" value="{{color}}" class="product-color" disabled/>
+                    </div>
+                </div>
+                <span class="modal-subtitle">Product Size</span>
+                <div class="input-group">
+                    <div class="product-variant" *ngFor="let size of productSize">
+
+                        <input type="radio" value="{{size}}" class="product-radio" [(ngModel)]="pSize" name="size" /><span class="product-size">{{size}}</span>
+                    </div>
+                </div>
+                <span class="modal-subtitle">Quantity</span>
+                <div class="input-group">
+                    <div class=" input-group-addon">
+                        <button class="btn btn-default btn-sm btn-qty" (click)="qtyMinus();"><i class="fa fa-minus"></i></button>
+                    </div>
+                    <input type="text" [(ngModel)]="productQty" class="qty-area" disabled/>
+                    <div class="input-group-addon">
+                        <button class="btn btn-default btn-sm btn-qty" (click)="qtyPlus();"><i class="fa fa-plus"></i></button>
+                    </div>
+                </div>
+                <span class="modal-subtitle">Total Amount: ₹{{productPrice*productQty}}</span>
+                <button class="btn btn-primary btn-cartplus" data-dismiss="modal" *ngIf="pVariant!=null && pSize!=null" (click)="addtoCart('srkit28@gmail.com');"><i class="fa fa-cart-plus fa-1x"></i> ADD</button>
+                <button class="btn btn-primary btn-cartplus" *ngIf="pVariant==null || pSize==null" disabled><i class="fa fa-cart-plus fa-1x"></i> ADD</button>
+            </div>
+        </div>
+    </div>
